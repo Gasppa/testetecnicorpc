@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Teste Técnico - RPC</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.1/js/anychart-base.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Personal CSS  -->
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">
+            <img src="images/logo_rpc.png" class="logo" alt="rpclogo">
+        </div>
+
+    </div>
+    <main>
+        <div id="conteudo">
+
+            <div class="title">
+                <h3>
+                    <strong>
+                        Dados Gerais
+                    </strong>
+                </h3>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                <strong>Contas Ativas</strong>
+                            </h3>
+
+                            <div class="valor">
+                                <h1>
+                                    <strong><%=Intl.NumberFormat('pt-BR', {maximumFractionDigits: 0}).format(contasAtivas) %></strong>
+                                </h1>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                <strong>Dívidas a cobrar</strong>
+                            </h3>
+
+                            <div class="divida">
+                                <h1>
+                                    <strong><%=Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(dividasTotais)%></strong>
+                                </h1>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                <strong>Patrimônio Anual Previsto</strong>
+                            </h3>
+
+                            <div class="patrimonio">
+                                <h1>
+                                    <strong><%=Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(pagamentoAnual)%></strong>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="title">
+                <h3>
+                    <strong>
+                        20 Maiores Famílias em Número de Contas Ativas
+                    </strong>
+                </h3>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div id="contasAtivasPorFamilia">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="title">
+                <h3>
+                    <strong>
+                        20 Maiores Famílias em Capacidade Anual de Pagamentos
+                    </strong>
+                </h3>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div id="lucroPorFamilia">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="title">
+                <h3>
+                    <strong>
+                        20 Famílias com Maiores Dívidas a Cobrar
+                    </strong>
+                </h3>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div id="dividaPorFamilia">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="title">
+                <h3>
+                    <strong>
+                        20 Famílias com Maior Renda Anual Líquida
+                    </strong>
+                </h3>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div id="rendaAnualPorFamiliaMaiores" class="graphs">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="title">
+                <h3>
+                    <strong>
+                        20 Famílias com Menor Renda Anual Líquida
+                    </strong>
+                </h3>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div id="rendaAnualPorFamiliaMenores" class="graphs">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="contasAtivas">
+        <%=JSON.stringify(contasAtivasPorFamilia) %>
+    </div>
+
+    <div id="pagamentoAnual">
+        <%=JSON.stringify(pgtoAnualPorFamilia) %>
+    </div>    
+
+    <div id="dividaAnual">
+        <%=JSON.stringify(dividaAnualPorFamilia) %>
+    </div>
+
+    <div id="rendaAnualMaiores">
+        <%=JSON.stringify(rendaLiquidaPorFamilia.slice(0,19)) %>
+    </div>
+
+    <div id="rendaAnualMenores">
+        <%=JSON.stringify(rendaLiquidaPorFamilia.slice(325,345)) %>
+    </div>
+
+    <script>
+
+        var vetContasAtivas = JSON.parse(document.getElementById("contasAtivas").innerText)
+        $("#contasAtivas").remove()
+
+        var vetPgtoAnual = JSON.parse(document.getElementById("pagamentoAnual").innerText)
+        $("#pagamentoAnual").remove()
+
+        var vetDividaAnual = JSON.parse(document.getElementById("dividaAnual").innerText)
+        $("#dividaAnual").remove()
+
+        var vetRendaAnualMaiores = JSON.parse(document.getElementById("rendaAnualMaiores").innerText)
+        $("#rendaAnualMaiores").remove()
+
+        var vetRendaAnualMenores = JSON.parse(document.getElementById("rendaAnualMenores").innerText)
+        $("#rendaAnualMenores").remove()
+
+        var dataContasAtivas = anychart.data.set(vetContasAtivas)
+        var dataRendaAnualMaiores = anychart.data.set(vetRendaAnualMaiores)
+        var dataRendaAnualMenores = anychart.data.set(vetRendaAnualMenores)
+
+    </script>
+
+    <script src="js/anychart.js" type="text/javascript">
+
+    </script>
+
+</body>
+
+</html>
